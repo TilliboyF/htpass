@@ -25,7 +25,7 @@ func handleDelete(cmd *cobra.Command, args []string) {
 	username := args[0]
 	users, err := common.ReadHtpasswdFile(htPasswdFile)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	if val := users[username]; val == "" {
 		fmt.Println(color.RedString("user %s not found", username))

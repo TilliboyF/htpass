@@ -23,7 +23,6 @@ var setPasswordCmd = &cobra.Command{
 
 func init() {
 	setPasswordCmd.Flags().IntVarP(&bcryptCost, "cost", "c", bcrypt.DefaultCost, "Bcrypt cost")
-
 	rootCmd.AddCommand(setPasswordCmd)
 }
 

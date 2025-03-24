@@ -7,13 +7,12 @@ import (
 	"github.com/rodaine/table"
 	"github.com/spf13/cobra"
 	"github.com/tilliboyf/htpass/common"
-	"log"
 )
 
 var listCmd = &cobra.Command{
 	Use:     "list",
-	Short:   "List all users",
-	Long:    "List all users",
+	Short:   "List all users with the hashed password",
+	Long:    "List all users with the hashed password",
 	Args:    cobra.NoArgs,
 	Aliases: []string{"ls"},
 	Run:     handleList,
@@ -26,7 +25,8 @@ func init() {
 func handleList(cmd *cobra.Command, args []string) {
 	users, err := common.ReadHtpasswdFile(htPasswdFile)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(color.RedString(err.Error()))
+		return
 	}
 
 	headerFmt := color.New(color.FgCyan, color.Underline).SprintfFunc()
